@@ -2,10 +2,14 @@
 
 Go to "api/Config/default.json" and add your mongo db uri and a random json secret.
 
-Enter api folder and run backend using "nodemon index".
+Open cmd terminal on your vs code and enter api folder using command: "cd api". 
 
-Then enter client folder and run front end using "npm run dev".
+Now start backend using command: "nodemon index"
+
+Open another cmd terminal on home directory and enter client folder using "cd client".
+
+Now start front end using "npm run dev".
 
 Let them  both run togethor on differrent ports and access the front end on port "5173".
 
-Done
+Done✅
