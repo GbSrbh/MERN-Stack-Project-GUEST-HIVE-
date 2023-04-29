@@ -1,6 +1,13 @@
 "# MERN-Stack-Project-GUEST-HIVE-" 
 
-Go to "api/Config/default.json" and add your mongo db uri and a random json secret.
+Go to "api/Config", create a file called "default.json". Inside default.json add this tempelate:
+
+<{
+  "mongoURI": "",
+  "jsonSecret": ""
+}>
+
+Remember to exclude <>. Here, add your mongo db connection url and any random json secret.
 
 Open cmd terminal on your vs code and enter api folder using command: "cd api". 
 
