@@ -13,5 +13,3 @@ Now start front end using "npm run dev".
 Let them  both run togethor on differrent ports and access the front end on port "5173".
 
 Done✅
-
-Now that I have commited directly from git lets see if it works
