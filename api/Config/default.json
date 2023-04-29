@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://saurabh123:saurabh123@cluster0.y3lelwx.mongodb.net/test",
-  "jsonSecret": "JsonTokenSecret"
+  "mongoURI": "",
+  "jsonSecret": ""
 }
