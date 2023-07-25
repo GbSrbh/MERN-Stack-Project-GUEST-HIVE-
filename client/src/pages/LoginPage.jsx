@@ -12,30 +12,6 @@ export default function LoginPage() {
   const [redirect, setRedirect] = useState(false);
   const { setUser } = useContext(UserContext);
 
-  function onGoogleSuccess(response) {
-    // const id_token = response.tokenId;
-    // // Send the ID token to your backend for authentication
-    // const { data } = axios.post('/login', { id_token });
-    // // fetch('/google-authentication', {
-    // //   method: 'POST',
-    // //   headers: { 'Content-Type': 'application/json' },
-    // //   body: JSON.stringify({ id_token: id_token })
-    // // })
-    // // .then(response => response.json())
-    // // .then(data => {
-    // //   // Handle the response from your backend
-    // // });
-    // // setUser(data);
-    // alert('Login successful');
-    // setRedirect(true);
-    // setUser({ name: 'Saurabh' });
-    setRedirect(true);
-  }
-
-  // function onGoogleFailure(error) {
-  //   console.error(error);
-  // }
-
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
@@ -73,7 +49,7 @@ export default function LoginPage() {
             <GoogleLogin
               clientId="123377236981-jqfgjot6f67f3k81ovm4giu6c5rdq1mb.apps.googleusercontent.com"
               buttonText="Sign in with Google"
-              onSuccess={onGoogleSuccess}
+              // onSuccess={onGoogleSuccess}
               // onFailure={onGoogleFailure}
               cookiePolicy={'single_host_origin'}
               className=""
