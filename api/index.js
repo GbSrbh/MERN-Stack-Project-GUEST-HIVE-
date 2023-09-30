@@ -4,17 +4,17 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const mongoConnect = require('./Config/MongoDb');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const cookieParser = require('cookie-parser');
 const imageDownloader = require('image-downloader');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-// const { OAuth2Client } = require('google-auth-library');
 
 const User = require('./Models/User');
 const Place = require('./Models/Place');
 const Booking = require('./Models/Booking');
+
+require("dotenv").config();
 
 mongoConnect();
 
@@ -25,7 +25,7 @@ app.use('/Uploads', express.static(__dirname + '/Uploads'));
 
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:5173'
+  origin: process.env.FrontEndPort
 }))
 
 
@@ -39,7 +39,7 @@ app.get('/test', (req, res) => {
 app.get('/profile', async (req, res) => {
   const { Cookie } = req.cookies;
   if (Cookie) {
-    const decodedToken = jwt.verify(Cookie, config.get('jsonSecret'));
+    const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
     const id = decodedToken.user.id;
     const { name } = await User.findOne({ _id: id });
     res.json({ name });
@@ -101,7 +101,7 @@ app.post('/login', async (req, res) => {
         id: user.id
       }
     };
-    jwt.sign(payload, config.get('jsonSecret'), (err, token) => {
+    jwt.sign(payload, process.env.jsonSecret, (err, token) => {
       if (err) throw err;
       res.cookie("Cookie", token).json(user);
     })
@@ -150,7 +150,7 @@ app.post('/places', async (req, res) => {
   const { title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests, price } = placeData;
   if (Cookie) {
     try {
-      const decodedToken = jwt.verify(Cookie, config.get('jsonSecret'));
+      const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
       const id = decodedToken.user.id;
       let place = new Place({
         owner: id,
@@ -166,7 +166,6 @@ app.post('/places', async (req, res) => {
   } else {
     res.json(null);
   }
-
 })
 
 //Route to return place present on the user account
@@ -174,7 +173,7 @@ app.get('/places', async (req, res) => {
   const { Cookie } = req.cookies;
   if (Cookie) {
     try {
-      const decodedToken = jwt.verify(Cookie, config.get('jsonSecret'));
+      const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
       const id = decodedToken.user.id;
       const place = await Place.find({ owner: id });
       res.json(place);
@@ -207,8 +206,7 @@ app.get('/places/:id', async (req, res) => {
 app.put('/places', async (req, res) => {
   const { Cookie } = req.cookies;
   if (Cookie) {
-    const decodedToken = jwt.verify(Cookie, config.get('jsonSecret'));
-    const userId = decodedToken.user.id;
+    const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
 
     const { id, title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests, price } = req.body;
 
@@ -248,7 +246,7 @@ app.post('/bookings', async (req, res) => {
   try {
     const { Cookie } = req.cookies;
     if (Cookie) {
-      const decodedToken = jwt.verify(Cookie, config.get('jsonSecret'));
+      const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
       const user = decodedToken.user.id;
       // const findBooking = await Booking.findOne({ place: place.toString() });
       // // if (findBooking) {
@@ -284,7 +282,7 @@ app.get('/bookings', async (req, res) => {
   const { Cookie } = req.cookies;
   try {
     if (Cookie) {
-      const decodedToken = jwt.verify(Cookie, config.get('jsonSecret'));
+      const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
       const userId = decodedToken.user.id;
       const Bookings = await Booking.find({ user: userId }).populate({ path: 'place', model: 'place' });
       res.json(Bookings);
