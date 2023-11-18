@@ -1,21 +1,28 @@
 "# MERN-Stack-Project-GUEST-HIVE-" 
 
-Go to "api/Config", create a file called "default.json". Inside default.json add this tempelate:
+Follow the following steps to run the project on your local port:
 
-<{
-  "mongoURI": "",
-  "jsonSecret": ""
-}>
 
-Remember to exclude <>. Here, add your mongo db connection url and any random json secret.
+1) In the api folder create a .env file and fill the following tempelate in the env file.
 
-Open cmd terminal on your vs code and enter api folder using command: "cd api". 
+<
+mongoURI = 
+jsonSecret = anyRandomSecret
+FrontEndPort = http://localhost:5173
+>
 
-Now start backend using command: "nodemon index"
+Note: Remember to exclude <>. Add your mongo db connection uri and any random json secret.
 
-Open another cmd terminal on home directory and enter client folder using "cd client".
+2) Open new terminal on your vs code and enter api folder using command "cd api", and install dependencies using "npm i".
 
-Now start front end using "npm run dev".
+3) Now start backend using command: "nodemon index" or "node index"
+
+3) Do the same for client folder, open a new terminal and enter:
+
+"cd client"
+"npm i"
+
+4) Now start front end using command "npm run dev".
 
 Let them  both run togethor on differrent ports and access the front end on port "5173".
 

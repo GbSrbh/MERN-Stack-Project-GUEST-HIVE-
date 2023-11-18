@@ -1,6 +1,10 @@
 {
+  "name": "Booking-Portal",
+  "version": "1",
+  "author": "Saurabh",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon index"
+    "start": "node index.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.290.0",

@@ -248,16 +248,6 @@ app.post('/bookings', async (req, res) => {
     if (Cookie) {
       const decodedToken = jwt.verify(Cookie, process.env.jsonSecret);
       const user = decodedToken.user.id;
-      // const findBooking = await Booking.findOne({ place: place.toString() });
-      // // if (findBooking) {
-      // //   const checkinn = findBooking.checkIn;
-      // //   const checkoutt = findBooking.checkOut;
-      // //   if (checkinn === checkIn || checkoutt === checkOut) {
-      // //     res.send('Booked');
-      // //   }
-      // // }
-      // console.log(findBooking.checkIn);
-      // console.log(checkIn);
 
       const booking = new Booking({
         place,
@@ -296,4 +286,4 @@ app.get('/bookings', async (req, res) => {
 })
 
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
