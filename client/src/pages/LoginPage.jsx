@@ -4,7 +4,6 @@ import axios from "axios";
 import { UserContext } from "../UserContext.jsx";
 import Index from './IndexPage.jsx';
 
-import { GoogleLogin } from 'react-google-login';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -45,16 +44,7 @@ export default function LoginPage() {
             value={password}
             onChange={ev => setPassword(ev.target.value)} />
           <button className="primary">Login</button>
-          <div className="mt-6 mb-4 flex justify-center">
-            <GoogleLogin
-              clientId="123377236981-jqfgjot6f67f3k81ovm4giu6c5rdq1mb.apps.googleusercontent.com"
-              buttonText="Sign in with Google"
-              // onSuccess={onGoogleSuccess}
-              // onFailure={onGoogleFailure}
-              cookiePolicy={'single_host_origin'}
-              className=""
-            />
-          </div>
+          
           <div className="text-center py-2 text-gray-500">
             Don't have an account yet? <Link className="underline text-black" to={'/register'}>Register now</Link>
           </div>
